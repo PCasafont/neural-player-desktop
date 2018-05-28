@@ -76,9 +76,6 @@ class TrackController : Controller() {
 	}
 
 	fun updateTrackScore(track: Track, score: Double) {
-		track.preferenceScoreProperty.set(score)
-		val trackDto = TrackDto(track)
-		trackDto.preferenceScore = score
-		trackRestController.update(track.id!!, trackDto)
+		trackRestController.updatePreferenceScore(track.id!!, score)
 	}
 }

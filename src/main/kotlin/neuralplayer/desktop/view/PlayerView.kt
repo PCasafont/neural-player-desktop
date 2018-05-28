@@ -39,7 +39,7 @@ class PlayerView : View() {
 				}
 				textAlignment = TextAlignment.CENTER
 				style {
-					fontSize = 16.px
+					fontSize = 18.px
 				}
 			}
 			label {

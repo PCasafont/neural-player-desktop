@@ -27,6 +27,8 @@ class TrackRestController : Controller() {
 			= api.get("tracks").list().toModel<TrackDto>()
 	fun update(id: Long, trackDto: TrackDto)
 			= api.put("tracks/$id", trackDto).one().toModel<TrackDto>()
+
+	fun updatePreferenceScore(id: Long, preferenceScore: Double) = api.put("tracks/$id/preferenceScore?value=$preferenceScore")
 	fun delete(id: Long)
 			= api.post("tracks/$id")
 	//fun upload(id: Long, file: File)
