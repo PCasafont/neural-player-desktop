@@ -23,7 +23,7 @@ class MediaListener(private val fileName: String,
 			executionQueue.add(this)
 		} else {
 			timerTask = executorService.schedule({
-				openCompletionView()
+				handle(title, artist, album)
 			}, 1500, TimeUnit.MILLISECONDS)
 		}
 	}
@@ -56,7 +56,7 @@ class MediaListener(private val fileName: String,
 		val next = executionQueue.firstOrNull() ?: return
 		executionQueue.remove(next)
 		if (next.title != null) {
-			next.handle(title, artist, album)
+			next.handle(next.title, next.artist, next.album)
 		} else {
 			next.openCompletionView()
 		}
@@ -74,6 +74,10 @@ class MediaListener(private val fileName: String,
 	}
 
 	override fun equals(other: Any?) = other is MediaListener && other.fileName == fileName
+
+	override fun hashCode(): Int = fileName.hashCode()
+
+	override fun toString() = "MediaListener ($fileName)"
 
 	companion object {
 		private val executionQueue = HashSet<MediaListener>()

@@ -149,7 +149,7 @@ class PlayerView : View() {
 			}
 			val changingTrack = AtomicBoolean(false)
 			rating.ratingProperty().addListener { _, _, newValue ->
-				if (changingTrack.get() == false) {
+				if (!changingTrack.get()) {
 					playerController.currentTrack?.let {
 						trackController.updateTrackScore(it, newValue.toDouble())
 					}
